@@ -1,7 +1,7 @@
 import { Form, Input, Button, Card } from "antd";
 import { Link } from "react-router-dom";
-import { useAuthForm } from "../hooks/useAuthForm";
-import "../styles/RegisterPage.css";
+import { useAuthForm } from "../../hooks/useAuthForm";
+import "../../styles/RegisterPage.css";
 
 const Register = () => {
   const { handleRegister } = useAuthForm();

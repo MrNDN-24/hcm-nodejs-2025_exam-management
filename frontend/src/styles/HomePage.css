@@ -2,31 +2,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  min-height: 90vh;
+  padding: 40px 24px;
   background: linear-gradient(145deg, #f0f0f0, #fafafa);
-  box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
 .home-card {
   width: 100%;
-  max-width: 400px;
-  text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-}
-
-.home-card .ant-card-head {
-  border-radius: 12px 12px 0 0;
-  font-size: 22px;
-  padding: 20px;
-  border-bottom: none;
-  background-color: #fff;
-  text-align: center;
-}
-
-.home-card .ant-card-body {
+  max-width: 1000px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   padding: 40px;
-  background-color: #fff;
+}
+
+.home-image {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.home-image:hover {
+  transform: scale(1.05);
+}
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

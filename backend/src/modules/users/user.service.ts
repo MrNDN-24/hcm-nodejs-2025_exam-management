@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -83,12 +87,16 @@ export class UserService {
   }
 
   async findByUsername(username: string): Promise<User> {
-    return findOneByField(
-      this.userRepo,
-      'username',
-      username,
-      'Không tìm thấy người dùng theo tên đăng nhập',
-    );
+    const user = await this.userRepo.findOne({
+      where: { username },
+      relations: ['role'],
+    });
+    if (!user) {
+      throw new NotFoundException(
+        'Không tìm thấy người dùng theo tên đăng nhập',
+      );
+    }
+    return user;
   }
 
   async findById(id: number): Promise<User> {
@@ -104,4 +112,3 @@ export class UserService {
     return this.userRepo.save(user);
   }
 }
-

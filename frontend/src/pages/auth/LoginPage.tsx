@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Input, Button, Card, Modal } from "antd";
-import ResendVerify from "../components/ResendVerify";
-import "../styles/LoginPage.css";
-import { useAuthForm } from "../hooks/useAuthForm";
-import { useEmailVerifyQuery } from "../hooks/useEmailVerifyQuery";
+import ResendVerify from "../../components/ResendVerify";
+import "../../styles/LoginPage.css";
+import { useAuthForm } from "../../hooks/useAuthForm";
+import { useEmailVerifyQuery } from "../../hooks/useEmailVerifyQuery";
 
 const Login = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

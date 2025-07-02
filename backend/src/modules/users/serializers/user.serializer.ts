@@ -1,5 +1,6 @@
   import { Expose } from 'class-transformer';
   import { ApiProperty } from '@nestjs/swagger';
+  import { Transform } from 'class-transformer';
 
   export class UserSerializer {
     @ApiProperty()
@@ -33,6 +34,11 @@
     @ApiProperty()
     @Expose()
     role_id: number;
+    
+    @Expose()
+    @Transform(({ obj }) => obj.role?.name)
+    @ApiProperty()
+    role_name: string;
 
     @ApiProperty()
     @Expose()

@@ -1,22 +1,40 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { loginUser, registerUser, resendVerifyEmail } from "../services/authService";
+import {
+  loginUser,
+  registerUser,
+  resendVerifyEmail,
+} from "../services/authService";
 import { useAuth } from "./useAuth";
 import type { LoginFormData, RegisterFormData } from "../types/auth.type";
 
 export const useAuthForm = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
 
   const handleLogin = async (data: LoginFormData) => {
     try {
       const res = await loginUser(data);
-      login(res.data.access_token);
+      const { access_token, user } = res.data;
+      login(access_token, user);
+
       toast.success("Đăng nhập thành công!");
-      navigate("/");
+      if (user.role_name === "user") {
+        navigate("/");
+      } else if (user.role_name === "suppervisor") {
+        navigate("/suppervisor/subjects");
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       toast.error((err as Error).message);
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Đăng xuất thành công!");
+    navigate("/");
   };
 
   const handleRegister = async (data: RegisterFormData) => {
@@ -39,5 +57,5 @@ export const useAuthForm = () => {
     }
   };
 
-  return { handleLogin, handleRegister, handleResend };
+  return { handleLogin, handleRegister, handleResend, handleLogout };
 };
